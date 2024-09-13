@@ -1,6 +1,6 @@
 class Variable:
     #added a fookin comment..
-    #arnav loda benchoood
+    #ap
     def __init__(self):
         self.absent = 0.0
         self.total = 0.0
