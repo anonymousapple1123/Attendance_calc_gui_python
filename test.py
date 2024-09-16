@@ -1,6 +1,4 @@
 class Variable:
-    #added a fookin comment..
-    #ap
     def __init__(self):
         self.absent = 0.0
         self.total = 0.0
