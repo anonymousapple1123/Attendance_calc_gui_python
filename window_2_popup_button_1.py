@@ -1,11 +1,11 @@
-#file has been added and works as intended.
+#latest push&commit at sep 16 10:26 am
 import ttkbootstrap as ttk
 
 def open_popup(entry1, entry2, output_string):
     # Create a new window
     popup_window = ttk.Window(themename='journal')
     popup_window.title('Additional Input')
-    popup_window.geometry('300x200')
+    popup_window.geometry('500x450')
 
     # Label for the popup
     label = ttk.Label(master=popup_window, text='Enter additional input:', font='Calibri 14')
