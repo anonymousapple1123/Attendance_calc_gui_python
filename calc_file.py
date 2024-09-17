@@ -1,4 +1,4 @@
-#latest push&commit at sep 16 10:26 am
+#latest push&commit at sep 17 10:10 am
 def multiply(absent,total):
     return absent*total
 def divide(num1,num2):
@@ -6,3 +6,28 @@ def divide(num1,num2):
 #calc file
 def percent_attendance(absent,total):
     return 100-((absent/total)*100)
+# attendance after leave
+def need_leave(absent,total,days):
+    curr_absent=float(float(absent)+(days*8))
+    return 100 - ((curr_absent / total) * 100)
+#days to stay present to avoid fine.
+def avoid_fine(absent,total,leave_days):
+    new_absent=absent+(leave_days*8)
+    new_percentage=(100-((new_absent/total)*100))
+    lectures_to_be_present=(10*new_absent)-total
+    return lectures_to_be_present
+#get desired attendance
+def get_attendance(absent,total,desired_attendance):
+    curr_percentage=100-((absent/total)*100)
+    if curr_percentage==100 and desired_attendance!=100:
+        return -1.01
+    elif desired_attendance==100 and curr_percentage==100:
+        return -2.01
+    elif desired_attendance<curr_percentage:
+        absent_lectures=(((100-desired_attendance)/100)*total)-absent
+        return absent_lectures
+    elif desired_attendance > curr_percentage:
+        present_lectures=((absent*100)/(100-desired_attendance))-total
+        return present_lectures
+    elif desired_attendance==curr_percentage:
+        return -3.01
