@@ -1,9 +1,10 @@
 ('C:\\Users\\apple\\Documents\\gitHub\\New '
  'folder\\Attendance_calc_gui_python\\dist\\main.exe',
- True,
  False,
  False,
- 'C:\\Users\\apple\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\bootloader\\images\\icon-console.ico',
+ False,
+ ['C:\\Users\\apple\\Documents\\gitHub\\New '
+  'folder\\Attendance_calc_gui_python\\assets\\app_icon.ico'],
  None,
  False,
  False,
@@ -3339,8 +3340,8 @@
  [],
  False,
  False,
- 1738504271,
- [('run.exe',
-   'C:\\Users\\apple\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',
+ 1738504835,
+ [('runw.exe',
+   'C:\\Users\\apple\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\runw.exe',
    'EXECUTABLE')],
  'C:\\Users\\apple\\AppData\\Local\\Programs\\Python\\Python313\\python313.dll')
