@@ -1,4 +1,4 @@
-#latest push&commit at sep 17 10:10 am
+
 def multiply(absent,total):
     return absent*total
 def divide(num1,num2):

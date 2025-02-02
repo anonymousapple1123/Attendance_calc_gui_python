@@ -1,4 +1,4 @@
-import window_1
-#main file
+from gui import landingWindow
+
 if __name__ == "__main__":
-    window_1.main_window()
+    landingWindow.main()
