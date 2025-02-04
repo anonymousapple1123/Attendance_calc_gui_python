@@ -84,7 +84,7 @@ def create_take_leave_popup(absent, total):
     result_label = ttk.Label(popup, text="", font="Helvetica 14", foreground="grey")
     result_label.pack(pady=10)
     
-    def process_input(event):
+    def process_input(event): 
         try:
             days = int(entry.get())
             a = float(absent)

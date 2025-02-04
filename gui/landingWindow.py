@@ -17,7 +17,7 @@ def only_integers(P):
 
 def open_donate_link(event):
     """Opens the donation URL in the default web browser."""
-    webbrowser.open("https://donate.example.com")
+    webbrowser.open("https://www.linkedin.com/in/ayush-kumar-744056242/")
 
 def show_owner_info(root):
     """
@@ -26,14 +26,14 @@ def show_owner_info(root):
     """
     info_popup = ttk.Toplevel(root)
     info_popup.title("About")
-    info_popup.geometry("400x150+400+50")
+    info_popup.geometry("450x200+400+50")
     info_popup.resizable(False, False)
 
     frame = ttk.Frame(info_popup, padding=10)
     frame.pack(expand=True, fill='both')
 
     owner_text = "Dude who built this -> Ayush"
-    link_text = "Donate: https://donate.example.com"
+    link_text = "Find me on : www.linkedin.com/"
 
     owner_label = ttk.Label(frame, text=owner_text, font="Helvetica 12")
     owner_label.pack(pady=(10, 5))
