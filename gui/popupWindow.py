@@ -36,9 +36,9 @@ def create_avoid_fine_popup(absent, total):
     """
     popup = ttk.Toplevel()
     popup.title("Input Leave")
-    popup.geometry("500x300")
+    popup.geometry("1000x500")
     
-    description = "Input the number of days you want to take the leave and avoid fine"
+    description = "Provide the number of days you want to take the leave and avoid fine as well."
     desc_label = ttk.Label(popup, text=description, font="Helvetica 14", foreground="grey")
     desc_label.pack(pady=20)
     
@@ -55,7 +55,7 @@ def create_avoid_fine_popup(absent, total):
             a = float(absent)
             t = float(total)
             result = calculations.avoid_fine(a, t, leave_days)
-            result_label.config(text=f"Lectures to be present: {result}")
+            result_label.config(text=f"Present for : {result} lectures or {int(result/8)} Days.")
         except Exception as e:
             result_label.config(text="Error: Invalid input.")
     
@@ -71,9 +71,9 @@ def create_take_leave_popup(absent, total):
     """
     popup = ttk.Toplevel()
     popup.title("Input Leave")
-    popup.geometry("500x300")
+    popup.geometry("800x400")
     
-    description = "Input the number of days you want to take leave"
+    description = "Provide the number of days you want to take leave"
     desc_label = ttk.Label(popup, text=description, font="Helvetica 14", foreground="grey")
     desc_label.pack(pady=20)
     
@@ -90,7 +90,7 @@ def create_take_leave_popup(absent, total):
             a = float(absent)
             t = float(total)
             result = calculations.need_leave(a, t, days)
-            result_label.config(text=f"Attendance after leave: {result:.2f}%")
+            result_label.config(text=f"Attendance after your leave: {result:.2f}%")
         except Exception as e:
             result_label.config(text="Error: Invalid input.")
     
@@ -106,9 +106,9 @@ def create_get_attendance_popup(absent, total):
     """
     popup = ttk.Toplevel()
     popup.title("Get attendance")
-    popup.geometry("500x300")
+    popup.geometry("600x300")
     
-    description = "Input the percent you want to reach"
+    description = "Input the attendance percent you want to reach"
     desc_label = ttk.Label(popup, text=description, font="Helvetica 14", foreground="grey")
     desc_label.pack(pady=20)
     
@@ -124,8 +124,12 @@ def create_get_attendance_popup(absent, total):
             desired = int(entry.get())
             a = float(absent)
             t = float(total)
+            current_attendance=calculations.get_attendance(a,t)
             result = calculations.get_attendance(a, t, desired)
-            result_label.config(text=f"Calculation result: {result}")
+            if result==100 and current_attendance!=100:
+                result_label.config(text="Not possible.")
+            else :
+                result_label.config(text=f"Present for {result} lectures OR {int(result/8)} days")
         except Exception as e:
             result_label.config(text="Error: Invalid input.")
     

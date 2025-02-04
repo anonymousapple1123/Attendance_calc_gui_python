@@ -32,7 +32,7 @@ def show_owner_info(root):
     frame = ttk.Frame(info_popup, padding=10)
     frame.pack(expand=True, fill='both')
 
-    owner_text = "Owner: Advanced Attendance Inc."
+    owner_text = "Dude who built this -> Ayush"
     link_text = "Donate: https://donate.example.com"
 
     owner_label = ttk.Label(frame, text=owner_text, font="Helvetica 12")
