@@ -1,6 +1,9 @@
 import tkinter as tk
 import ttkbootstrap as ttk
 from logic import calculations
+INVALID_REQUEST=-1.01
+NO_CHANGE=0
+
 
 def only_integers(P):
     """Validation function to allow only integers."""
@@ -124,12 +127,18 @@ def create_get_attendance_popup(absent, total):
             desired = int(entry.get())
             a = float(absent)
             t = float(total)
-            current_attendance=calculations.get_attendance(a,t)
-            result = calculations.get_attendance(a, t, desired)
-            if result==100 and current_attendance!=100:
+            current_attendance=calculations.percent_attendance(a,t)
+            function_response = calculations.get_attendance(a, t, desired)
+
+            if function_response == INVALID_REQUEST:
                 result_label.config(text="Not possible.")
-            else :
-                result_label.config(text=f"Present for {result} lectures OR {int(result/8)} days")
+                
+            elif function_response == NO_CHANGE:
+                result_label.config(text="You have the desired attendance.")
+            elif desired < current_attendance :
+                result_label.config(text=f"Absent for {function_response} lectures OR {int(function_response/8)} days")
+            elif desired > current_attendance :
+                result_label.config(text=f"Present for {function_response} lectures OR {int(function_response/8)} days")
         except Exception as e:
             result_label.config(text="Error: Invalid input.")
     

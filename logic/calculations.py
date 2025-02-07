@@ -18,11 +18,10 @@ def avoid_fine(absent,total,leave_days):
     return lectures_to_be_present
 #get desired attendance
 def get_attendance(absent,total,desired_attendance):
-    curr_percentage=100-((absent/total)*100)
-    if curr_percentage==100 and desired_attendance!=100:
+    curr_percentage=100-((absent/total)*100)#calculates currnt percentage.
+
+    if curr_percentage==100 and desired_attendance!=100: #if requested percent is 100 and current is not 100 return error
         return -1.01
-    elif desired_attendance==100 and curr_percentage==100:
-        return -2.01
     elif desired_attendance<curr_percentage:
         absent_lectures=(((100-desired_attendance)/100)*total)-absent
         return absent_lectures
@@ -30,4 +29,4 @@ def get_attendance(absent,total,desired_attendance):
         present_lectures=((absent*100)/(100-desired_attendance))-total
         return present_lectures
     elif desired_attendance==curr_percentage:
-        return -3.01
+        return 0
