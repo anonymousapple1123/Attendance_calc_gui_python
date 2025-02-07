@@ -1,5 +1,5 @@
 ('C:\\Users\\apple\\Documents\\gitHub\\New '
- 'folder\\Attendance_calc_gui_python\\build\\coreUpdatev0.02.1\\PYZ-00.pyz',
+ 'folder\\Attendance_calc_gui_python\\build\\patch_updatev0.03.1\\PYZ-00.pyz',
  [('PIL',
    'C:\\Users\\apple\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PIL\\__init__.py',
    'PYMODULE'),
