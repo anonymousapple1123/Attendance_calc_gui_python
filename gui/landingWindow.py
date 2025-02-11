@@ -15,17 +15,19 @@ def only_integers(P):
     """
     return P == "" or P.isdigit()
 
-def open_donate_link(event):
+def linkedIn_link(event):
     """Opens the donation URL in the default web browser."""
     webbrowser.open("https://www.linkedin.com/in/ayush-kumar-744056242/")
+def instagram_link(event):
+    webbrowser.open("https://www.instagram.com/ayush.k.666/")
 
 def show_owner_info(root):
     """
     Creates a small popup window (Toplevel) that displays the owner information
-    and a donation link. Closes automatically after 8 seconds.
+    and a social media link. Closes automatically after 8 seconds.
     """
     info_popup = ttk.Toplevel(root)
-    info_popup.title("About")
+    info_popup.title("About Maintainer")
     info_popup.geometry("450x200+400+50")
     info_popup.resizable(False, False)
 
@@ -33,16 +35,21 @@ def show_owner_info(root):
     frame.pack(expand=True, fill='both')
 
     owner_text = "Dude who built this -> Ayush"
-    link_text = "Find me on : www.linkedin.com/"
+    link_text1 = "LinkedIn"
+    link_text2 = "Instagram"
 
     owner_label = ttk.Label(frame, text=owner_text, font="Helvetica 12")
     owner_label.pack(pady=(10, 5))
 
-    link_label = ttk.Label(frame, text=link_text, font="Helvetica 12 underline", foreground="blue", cursor="hand2")
-    link_label.pack(pady=(0, 10))
-    link_label.bind("<Button-1>", open_donate_link)
+    link1 = ttk.Label(frame, text=link_text1, font="Helvetica 12 underline", foreground="blue", cursor="hand2")
+    link1.pack(pady=(0, 10))
+    link1.bind("<Button-1>", linkedIn_link)
 
-    info_popup.after(8000, info_popup.destroy)
+    link2 = ttk.Label(frame, text=link_text2, font="Helvetica 12 underline", foreground="blue", cursor="hand2")
+    link2.pack(pady=(0, 10))
+    link2.bind("<Button-1>", instagram_link)
+
+    info_popup.after(15000, info_popup.destroy)
 
 def main():
     window = ttk.Window(themename='flatly')
