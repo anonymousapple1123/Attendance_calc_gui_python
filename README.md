@@ -25,6 +25,6 @@ Rules that are pre-defined are :
   5.Availability on other OS like macOS and Linux(Debian).
 ```
 
- $$ For the most part this application is barebones of the actual program. I will try my best to keep the updates consistent and do stable releases. $$
+ ` For the most part this application is barebones of the actual program. I will try my best to keep the updates consistent and do stable releases. `
 
   THANK YOU FOR USING THIS APPLICATION :)
