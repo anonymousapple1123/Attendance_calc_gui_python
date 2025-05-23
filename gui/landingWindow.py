@@ -28,13 +28,13 @@ def show_owner_info(root):
     """
     info_popup = ttk.Toplevel(root)
     info_popup.title("About Maintainer")
-    info_popup.geometry("450x200+400+50")
+    info_popup.geometry("450x200+600+100")
     info_popup.resizable(False, False)
 
     frame = ttk.Frame(info_popup, padding=10)
     frame.pack(expand=True, fill='both')
 
-    owner_text = "Dude who built this -> Ayush"
+    owner_text = "Created and maintained by Ayush,\nYou can find me here > "
     link_text1 = "LinkedIn"
     link_text2 = "Instagram"
 
@@ -54,7 +54,7 @@ def show_owner_info(root):
 def main():
     window = ttk.Window(themename='flatly')
     window.title("Advanced Attendance Calculator")
-    window.geometry("800x600")
+    window.geometry("1280x720")
     
     if os.path.exists(ICON_PATH):
         window.iconbitmap(ICON_PATH)
@@ -87,16 +87,16 @@ def main():
 
     # When each button is pressed, the current absent and total values are read
     # (as strings) and passed (after conversion inside the popup functions) to the popup.
-    btn1 = ttk.Button(button_frame, text="Calculate attendance", 
+    btn1 = ttk.Button(button_frame, text="Current Attendance", 
                       command=lambda: popupWindow.create_current_attendance_popup(entry_absent.get(), entry_total.get()),
                       bootstyle=common_bootstyle, width=btn_width)
-    btn2 = ttk.Button(button_frame, text="avoid fine", 
+    btn2 = ttk.Button(button_frame, text="Avoid Fine", 
                       command=lambda: popupWindow.create_avoid_fine_popup(entry_absent.get(), entry_total.get()),
                       bootstyle=common_bootstyle, width=btn_width)
     btn3 = ttk.Button(button_frame, text="Take Leave", 
                       command=lambda: popupWindow.create_take_leave_popup(entry_absent.get(), entry_total.get()),
                       bootstyle=common_bootstyle, width=btn_width)
-    btn4 = ttk.Button(button_frame, text="Get attendance", 
+    btn4 = ttk.Button(button_frame, text="Get Attendance", 
                       command=lambda: popupWindow.create_get_attendance_popup(entry_absent.get(), entry_total.get()),
                       bootstyle=common_bootstyle, width=btn_width)
     
@@ -105,9 +105,9 @@ def main():
     btn3.grid(row=1, column=0, padx=10, pady=10)
     btn4.grid(row=1, column=1, padx=10, pady=10)
     
-    # Fifth button (Settings) using a generic popup.
+    # Fifth button -> Settings
     btn_settings = ttk.Button(button_frame, text="Settings", 
-                              command=popupWindow.create_generic_popup, 
+                              command=popupWindow.create_settings_popup, 
                               bootstyle=common_bootstyle)
     btn_settings.grid(row=2, column=0, columnspan=2, pady=20)
     

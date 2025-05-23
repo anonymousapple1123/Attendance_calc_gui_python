@@ -1,4 +1,4 @@
-
+#This file contains core mathematical logic behind every calculation.
 def multiply(absent,total):
     return absent*total
 def divide(num1,num2):

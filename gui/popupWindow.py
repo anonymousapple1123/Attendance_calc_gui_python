@@ -1,6 +1,6 @@
 import tkinter as tk
 import ttkbootstrap as ttk
-from logic import calculations
+from logic import calculations, save_file_handler as save
 INVALID_REQUEST=-1.01
 NO_CHANGE=0
 
@@ -145,31 +145,62 @@ def create_get_attendance_popup(absent, total):
     entry.bind("<Return>", process_input)
     entry.focus()
 
-def create_generic_popup():
+
+def create_settings_popup():
     """
-    Creates a generic popup window (for the Settings button, for example).
+    Creates a popup window for the Settings button.
     """
     popup = ttk.Toplevel()
-    popup.title("Popup Window")
-    popup.geometry("400x300")
+    popup.title("Settings")
+    popup.geometry("750x350")
     
-    title_label = ttk.Label(popup, text="Popup Window", font="Helvetica 18 bold")
-    title_label.pack(pady=20)
-    
-    entry = ttk.Entry(popup, font="Helvetica 16", width=25)
-    entry.pack(pady=10)
-    
-    result_label = ttk.Label(popup, text="Result:", font="Helvetica 16")
+    title_label = ttk.Label(popup, text="Settings", font="Helvetica 18 bold")
+    title_label.pack(pady=10)
+
+    # Input fields for settings
+    theme_label = ttk.Label(popup, text="Lectures Per Day", font="Helvetica 10")
+    theme_label.pack(pady=5)
+    lectures_per_day = ttk.Entry(popup, font="Helvetica 16")
+    lectures_per_day.pack(pady=5)
+
+    font_size_label = ttk.Label(popup, text="Fine Every Percent", font="Helvetica 10")
+    font_size_label.pack(pady=5)
+    fine_per_percent = ttk.Entry(popup, font="Helvetica 16")
+    fine_per_percent.pack(pady=5)
+
+    # Load existing settings
+    settings = save.load_settings()
+    lectures_per_day.insert(0, settings.get('lectures_per_day', 8))
+    fine_per_percent.insert(0, settings.get('fine_per_percent', 4000))
+
+    result_label = ttk.Label(popup, text="", font="Helvetica 10")
     result_label.pack(pady=10)
-    
-    def process_input(event):
-        user_input = entry.get()
-        try:
-            value = float(user_input)
-            result = value * 2  # Example calculation.
-            result_label.config(text=f"Result: {result}")
-        except ValueError:
-            result_label.config(text="Invalid input. Please enter a number.")
-    
-    entry.bind("<Return>", process_input)
-    entry.focus()
+
+    def save_and_update():
+        """Save settings and update the display."""
+        settings = {
+            'lectures_per_day': lectures_per_day.get(),
+            'fine_per_percent': fine_per_percent.get(),
+        }
+        save.save_settings(settings)
+        result_label.config(text="Settings saved successfully!")
+       # messagebox.showinfo("Settings", "Settings saved successfully!")
+
+    save_button = ttk.Button(popup, text="Save Settings", command=save_and_update)
+    save_button.pack(pady=10)
+
+    # Display current settings
+    current_values_label = ttk.Label(popup, text="", font="Helvetica 10")
+    current_values_label.pack(pady=10)
+
+    def update_display():
+        current_values = f"Lecture count per day: {lectures_per_day.get()}\nFine every percent: {fine_per_percent.get()}"
+        current_values_label.config(text=current_values)
+
+    # Update display when input changes
+    lectures_per_day.bind("<KeyRelease>", lambda event: update_display())
+    fine_per_percent.bind("<KeyRelease>", lambda event: update_display())
+
+    # Initial display of current values
+    update_display()
+
