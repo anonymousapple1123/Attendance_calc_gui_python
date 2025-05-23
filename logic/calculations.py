@@ -1,6 +1,8 @@
 #This file contains core mathematical logic behind every calculation.
-from logic import save_file_handler
-lectures_per_day=list(save_file_handler.load_settings())[0]
+from logic import save_file_handler as save
+lectures_per_day=int(list(save.load_settings().values())[0])
+print("lecture per day = ", lectures_per_day)
+print(type(lectures_per_day))
 def multiply(absent,total):
     return absent*total
 def divide(num1,num2):
