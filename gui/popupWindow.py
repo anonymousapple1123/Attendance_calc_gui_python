@@ -1,6 +1,8 @@
 import tkinter as tk
 import ttkbootstrap as ttk
 from logic import calculations, save_file_handler as save
+
+lectures_per_day=int(list(save.load_settings().values())[0])
 INVALID_REQUEST=-1.01
 NO_CHANGE=0
 
@@ -33,8 +35,6 @@ def create_current_attendance_popup(absent, total):
 def create_avoid_fine_popup(absent, total):
     """
     Creates a popup window for the "avoid fine" button.
-    Title: "Input Leave"
-    Displays grey helper text and an integer-only input field.
     When Enter is pressed, calculates the lectures to be present using calculations.avoid_fine.
     """
     popup = ttk.Toplevel()
@@ -58,7 +58,7 @@ def create_avoid_fine_popup(absent, total):
             a = float(absent)
             t = float(total)
             result = calculations.avoid_fine(a, t, leave_days)
-            result_label.config(text=f"Present for : {result} lectures or {int(result/8)} Days.")
+            result_label.config(text=f"Present for : {result} lectures or {int(result/lectures_per_day)} Days.")
         except Exception as e:
             result_label.config(text="Error: Invalid input.")
     
@@ -136,9 +136,9 @@ def create_get_attendance_popup(absent, total):
             elif function_response == NO_CHANGE:
                 result_label.config(text="You have the desired attendance.")
             elif desired < current_attendance :
-                result_label.config(text=f"Absent for {function_response} lectures OR {int(function_response/8)} days")
+                result_label.config(text=f"Absent for {function_response} lectures OR {int(function_response/lectures_per_day)} days")
             elif desired > current_attendance :
-                result_label.config(text=f"Present for {function_response} lectures OR {int(function_response/8)} days")
+                result_label.config(text=f"Present for {function_response} lectures OR {int(function_response/lectures_per_day)} days")
         except Exception as e:
             result_label.config(text="Error: Invalid input.")
     
@@ -152,7 +152,7 @@ def create_settings_popup():
     """
     popup = ttk.Toplevel()
     popup.title("Settings")
-    popup.geometry("750x350")
+    popup.geometry("750x550")
     
     title_label = ttk.Label(popup, text="Settings", font="Helvetica 18 bold")
     title_label.pack(pady=10)
@@ -163,7 +163,7 @@ def create_settings_popup():
     lectures_per_day = ttk.Entry(popup, font="Helvetica 16")
     lectures_per_day.pack(pady=5)
 
-    font_size_label = ttk.Label(popup, text="Fine Every Percent", font="Helvetica 10")
+    font_size_label = ttk.Label(popup, text="%Percent at which fine starts", font="Helvetica 10")
     font_size_label.pack(pady=5)
     fine_per_percent = ttk.Entry(popup, font="Helvetica 16")
     fine_per_percent.pack(pady=5)
@@ -171,7 +171,7 @@ def create_settings_popup():
     # Load existing settings
     settings = save.load_settings()
     lectures_per_day.insert(0, settings.get('lectures_per_day', 8))
-    fine_per_percent.insert(0, settings.get('fine_per_percent', 4000))
+    fine_per_percent.insert(0, settings.get('fine_per_percent', 90))
 
     result_label = ttk.Label(popup, text="", font="Helvetica 10")
     result_label.pack(pady=10)

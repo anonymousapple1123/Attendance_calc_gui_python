@@ -5,8 +5,19 @@ import tkinter as tk
 import webbrowser
 import ttkbootstrap as ttk
 from gui import popupWindow
+import platform
+os_name = platform.system()
+    
+if os_name == "Windows":
+    ICON_PATH = os.path.join(os.path.dirname(__file__), "../assets/app_icon.ico")
+elif os_name == "Linux":
+    ICON_PATH = os.path.join(os.path.dirname(__file__), "../assets/app_icon.png")
+elif os_name == "Darwin": 
+    ICON_PATH = os.path.join(os.path.dirname(__file__), "../assets/app_icon.png")
+else:
+    print(f"You are running on an unsupported operating system: {os_name}")
+    ICON_PATH = os.path.join(os.path.dirname(__file__), "../assets/app_icon.ico")#default option to avoid undefined error.
 
-ICON_PATH = os.path.join(os.path.dirname(__file__), "../assets/app_icon.ico")
 
 
 def only_integers(P):

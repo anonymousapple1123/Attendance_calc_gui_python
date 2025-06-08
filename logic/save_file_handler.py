@@ -1,6 +1,6 @@
 import json
 import os
-read_validation = False
+read_validation = False #both not used currently
 write_validation = False
 
 def save_settings(settings, directory = 'data',filename = 'settings.json'):

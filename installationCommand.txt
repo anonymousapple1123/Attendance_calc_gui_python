@@ -1,1 +1,3 @@
-pyinstaller --onefile --noconsole  --windowed --icon=assets/app_icon.ico --name iconic main.py
+Windows: pyinstaller --onefile --noconsole  --windowed --icon=assets/app_icon.ico --name iconic main.py
+
+Linux(Debian): pyinstaller --onefile --noconsole  --windowed --icon=assets/app_icon.png --name iconic main.py
