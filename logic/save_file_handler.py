@@ -1,31 +1,37 @@
 import json
 import os
-read_validation = False #both not used currently
+import sys
+
+read_validation = False
 write_validation = False
 
-def save_settings(settings, directory = 'data',filename = 'settings.json'):
-    
-    os.makedirs(directory, exist_ok=True)
-    current_dir = os.path.dirname(__file__)
-    file_path = os.path.join(current_dir, '..',directory, filename)
-    file_path = os.path.abspath(file_path)
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and PyInstaller """
+    try:
+        base_path = sys._MEIPASS  # Only exists in PyInstaller bundles
+    except AttributeError:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
-    with open(file_path,'w') as json_file :
-        json.dump(settings,json_file, indent = 4)
+def get_settings_path(directory='data', filename='settings.json'):
+    # Store settings next to the executable or in current working directory
+    dir_path = resource_path(directory)
+    os.makedirs(dir_path, exist_ok=True)
+    return os.path.join(dir_path, filename)
+
+def save_settings(settings, directory='data', filename='settings.json'):
+    global write_validation
+    file_path = get_settings_path(directory, filename)
+    with open(file_path, 'w') as json_file:
+        json.dump(settings, json_file, indent=4)
         write_validation = True
 
-def load_settings(directory = 'data', filename = 'settings.json'):
-    
-    current_dir = os.path.dirname(__file__)
-    file_path = os.path.join(current_dir, '..',directory, filename)
-    file_path = os.path.abspath(file_path)
-
+def load_settings(directory='data', filename='settings.json'):
+    global read_validation
+    file_path = get_settings_path(directory, filename)
     if os.path.exists(file_path):
-        with open(file_path,'r') as json_file:
+        with open(file_path, 'r') as json_file:
+            read_validation = True
             return json.load(json_file)
-        read_validation = True
-        
     else:
         return {}
-        #If the the file is deleted or missing make sure to create settings json file again with default values
-        # I will do this later once the code is working fine with my main code.
