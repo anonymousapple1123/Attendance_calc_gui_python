@@ -1,10 +1,6 @@
 #This file contains core mathematical logic behind every calculation.
 from logic import save_file_handler as save
 
-lectures_per_day=int(list(save.load_settings().values())[0])
-fine_starts_from=int(list(save.load_settings().values())[1])
-
-print("calculations.py : Lecture per day = ", lectures_per_day)
 def multiply(absent,total):
     return absent*total
 def divide(num1,num2):
@@ -14,10 +10,16 @@ def percent_attendance(absent,total):
     return 100-((absent/total)*100)
 # attendance after leave
 def need_leave(absent,total,days):
+    lectures_per_day=int(list(save.load_settings().values())[0])
+
     curr_absent=float(float(absent)+(days*lectures_per_day))
     return 100 - ((curr_absent / total) * 100)
 #days to stay present to avoid fine.
 def avoid_fine(absent,total,leave_days):
+    fine_starts_from=int(list(save.load_settings().values())[1])
+    lectures_per_day=int(list(save.load_settings().values())[0])
+
+
     new_absent=absent+(leave_days*lectures_per_day)
     new_percentage=(100-((new_absent/total)*100))
     #lectures_to_be_present=(10*new_absent)-total -> this line calculated the lectures to be present to avoid fine which starts from 90% 

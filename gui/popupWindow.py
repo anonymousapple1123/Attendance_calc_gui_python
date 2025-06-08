@@ -2,7 +2,7 @@ import tkinter as tk
 import ttkbootstrap as ttk
 from logic import calculations, save_file_handler as save
 
-lectures_per_day=int(list(save.load_settings().values())[0])
+#lectures_per_day=int(list(save.load_settings().values())[0])
 INVALID_REQUEST=-1.01
 NO_CHANGE=0
 
@@ -58,6 +58,7 @@ def create_avoid_fine_popup(absent, total):
             a = float(absent)
             t = float(total)
             result = calculations.avoid_fine(a, t, leave_days)
+            lectures_per_day=int(list(save.load_settings().values())[0])
             result_label.config(text=f"Present for : {result} lectures or {int(result/lectures_per_day)} Days.")
         except Exception as e:
             result_label.config(text="Error: Invalid input.")
@@ -123,6 +124,8 @@ def create_get_attendance_popup(absent, total):
     result_label.pack(pady=10)
     
     def process_input(event):
+        lectures_per_day=int(list(save.load_settings().values())[0])
+
         try:
             desired = int(entry.get())
             a = float(absent)
