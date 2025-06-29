@@ -16,7 +16,7 @@
 This program is currently limited to specific set of pre defined rules.
 Rules that are pre-defined are :
   ```
-  1.The fine is imposed of attendance lower than 90%.
+  1.The fine is imposed of attendance lower than 90%. ‼️ UPDATE: you can change this value.
   2.There in no maximum lectures known and no way to provide it to the program.
   3.There are eight lectures each day, and this value cannot be changed. ‼ UPDATE : The lectures per day can be changed now via json.
 ```
