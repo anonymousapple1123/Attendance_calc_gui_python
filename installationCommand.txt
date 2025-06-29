@@ -1,3 +1,14 @@
-Windows: pyinstaller --onefile --noconsole  --windowed --icon=assets/app_icon.ico --name iconic main.py
+Following are the compilation command for different operating systems.
 
-Linux(Debian): pyinstaller --onefile --noconsole  --windowed --icon=assets/app_icon.png --name iconic main.py
+    Windows: pyinstaller --onefile --noconsole  --windowed --icon=assets/app_icon.ico --name iconic main.py
+    Linux(Debian): pyinstaller --onefile --noconsole  --windowed --icon=assets/app_icon.png --name iconic main.py
+
+If you are using a miniconda or anaconda environment manager the follow the following steps.
+
+    1.conda create --name attenv python=3.8
+    2.conda activate attenv  
+    3.pip install -r requirements.txt 
+    4.python main.py 
+    5.conda deactivate
+
+
